@@ -1,7 +1,7 @@
 package org.example.msproduct.mapper;
 
 import lombok.SneakyThrows;
-import org.example.msproduct.entity.ProductImage;
+import org.example.msproduct.dao.entity.ProductImage;
 import org.example.msproduct.model.request.ProductImageRequest;
 import org.example.msproduct.model.response.ProductImageResponse;
 

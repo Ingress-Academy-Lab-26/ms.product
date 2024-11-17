@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.USE_DEFAULTS;
-import static org.example.msproduct.constant.CriteriaConstants.COUNT_DEFAULT_VALUE;
-import static org.example.msproduct.constant.CriteriaConstants.PAGE_DEFAULT_VALUE;
+import static org.example.msproduct.model.constants.CriteriaConstants.COUNT_DEFAULT_VALUE;
+import static org.example.msproduct.model.constants.CriteriaConstants.PAGE_DEFAULT_VALUE;
 
 @Data
 @AllArgsConstructor

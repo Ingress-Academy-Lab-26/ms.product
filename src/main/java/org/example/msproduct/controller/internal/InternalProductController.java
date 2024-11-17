@@ -2,30 +2,47 @@ package org.example.msproduct.controller.internal;
 
 import lombok.RequiredArgsConstructor;
 import org.example.msproduct.model.request.OrderRequest;
+import org.example.msproduct.model.request.ProductCreateRequest;
+import org.example.msproduct.model.request.ProductUpdateRequest;
 import org.example.msproduct.model.response.OrderResponse;
+import org.example.msproduct.model.response.ProductResponse;
 import org.example.msproduct.service.abstraction.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("v1/internal/product")
+@RequestMapping("v1/internal/products")
 @RequiredArgsConstructor
 public class InternalProductController {
+
     private final ProductService productService;
 
-    @PostMapping("/get-quantity")
-    public ResponseEntity<OrderResponse> getQuantityById(@RequestBody OrderRequest orderRequest) {
-        var orderResponse = productService.getQuantity(orderRequest);
-        return ResponseEntity.ok(orderResponse);
+    @GetMapping("/getQuantity")
+    @ResponseStatus(OK)
+    public OrderResponse getQuantityById(@RequestBody OrderRequest orderRequest) {
+        return productService.getQuantity(orderRequest);
     }
 
-    @PostMapping("/update-quantity")
-    public ResponseEntity<Void> updateQuantity(@RequestBody OrderRequest orderRequest) {
-        productService.productQuantityUpdate(orderRequest);
-        return ResponseEntity.noContent().build();
+    @PostMapping(consumes = {"multipart/form-data", "application/json"})
+    @ResponseStatus(CREATED)
+    public void createProduct(@ModelAttribute @Validated ProductCreateRequest productCreateRequest) {
+        productService.createProduct(productCreateRequest);
     }
 
+    @PatchMapping(value = "/{id}", consumes = "multipart/form-data")
+    @ResponseStatus(NO_CONTENT)
+    public ProductResponse updateProduct(@ModelAttribute ProductUpdateRequest updateRequest, @PathVariable long id) {
+        return productService.updateProduct(id, updateRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(NO_CONTENT)
+    public void deleteProduct(@PathVariable long id) {
+        productService.deleteProduct(id);
+    }
 }

@@ -1,4 +1,4 @@
-package org.example.msproduct.constant;
+package org.example.msproduct.model.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

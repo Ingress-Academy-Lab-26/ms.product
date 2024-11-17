@@ -26,13 +26,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation "com.nimbusds:nimbus-jose-jwt:9.37.2"
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.4'
-    implementation 'org.redisson:redisson:3.17.0'
+    implementation "javax.validation:validation-api:${validationVersion}"
+    implementation "org.hibernate.validator:hibernate-validator:${validatorVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${feignVersion}"
+    implementation "org.redisson:redisson:${redissonVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'

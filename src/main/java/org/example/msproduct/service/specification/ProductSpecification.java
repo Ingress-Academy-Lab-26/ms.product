@@ -2,7 +2,8 @@ package org.example.msproduct.service.specification;
 
 import lombok.AllArgsConstructor;
 import org.example.msproduct.criteria.ProductCriteria;
-import org.example.msproduct.entity.Product;
+import org.example.msproduct.dao.entity.Product;
+import org.example.msproduct.dao.entity.ProductImage;
 import org.example.msproduct.util.PredicateUtil;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -11,10 +12,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import static org.example.msproduct.constant.CriteriaConstants.*;
+import static org.example.msproduct.model.constants.CriteriaConstants.*;
 import static org.example.msproduct.util.PredicateUtil.applyLikePattern;
 
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 public class ProductSpecification implements Specification<Product> {
     private ProductCriteria productCriteria;
 

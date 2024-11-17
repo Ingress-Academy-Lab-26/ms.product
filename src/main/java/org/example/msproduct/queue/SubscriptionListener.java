@@ -8,9 +8,10 @@ import org.example.msproduct.exception.QueueException;
 import org.example.msproduct.model.queue.dto.SubscriptionProductDto;
 import org.example.msproduct.service.abstraction.ProductService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static org.example.msproduct.constant.ErrorConstants.QUEUE_EXCEPTION;
+import static org.example.msproduct.model.constants.ErrorConstants.QUEUE_EXCEPTION;
 
 @Component
 @Slf4j
@@ -19,6 +20,9 @@ public class SubscriptionListener {
     private final ProductService productService;
     private final ObjectMapper objectMapper;
     private final QueueSender queueSender;
+
+    @Value("${rabbitmq.queue.subscription-service.queue}")
+    private String mainQueue;
 
     @RabbitListener(queues = "${rabbitmq.queue.subscription-service.queue}")
     public void consumer(final String message) {
@@ -34,6 +38,9 @@ public class SubscriptionListener {
 
     @RabbitListener(queues = "${rabbitmq.queue.subscription-service.queue_dlq}")
     public void deadLetterQueue(String message){
-        queueSender.sendMessageToQueue("${rabbitmq.queue.subscription-service.queue}}", message);
-    }
+        try {
+            queueSender.sendMessageToQueue(mainQueue, message);
+        } catch (Exception e) {
+            throw new QueueException(QUEUE_EXCEPTION.getCode(), QUEUE_EXCEPTION.getMessage());
+        }    }
 }

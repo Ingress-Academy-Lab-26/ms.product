@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-import static org.example.msproduct.constant.ValidationConstants.*;
+import static org.example.msproduct.model.constants.ValidationConstants.*;
 
 
 @Getter

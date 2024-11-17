@@ -1,4 +1,4 @@
-package org.example.msproduct.entity;
+package org.example.msproduct.dao.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

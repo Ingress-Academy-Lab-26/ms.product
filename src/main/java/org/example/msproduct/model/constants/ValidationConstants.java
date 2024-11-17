@@ -1,4 +1,4 @@
-package org.example.msproduct.constant;
+package org.example.msproduct.model.constants;
 
 public interface ValidationConstants {
     String PRODUCT_NAME_EMPTY = "Product name cannot be null or empty";

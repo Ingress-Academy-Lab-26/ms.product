@@ -8,7 +8,7 @@ import org.example.msproduct.exception.CustomFeignException;
 
 import static org.example.msproduct.client.decoder.JsonNodeFieldName.CODE;
 import static org.example.msproduct.client.decoder.JsonNodeFieldName.MESSAGE;
-import static org.example.msproduct.constant.ErrorConstants.CLIENT_EXCEPTION;
+import static org.example.msproduct.model.constants.ErrorConstants.CLIENT_EXCEPTION;
 
 public class CustomErrorDecoder implements ErrorDecoder {
     @Override

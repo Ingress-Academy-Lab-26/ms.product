@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.example.msproduct.constant.ErrorConstants.UNEXPECTED_EXCEPTION;
+import static org.example.msproduct.model.constants.ErrorConstants.UNEXPECTED_EXCEPTION;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Slf4j

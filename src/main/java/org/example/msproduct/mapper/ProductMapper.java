@@ -1,6 +1,6 @@
 package org.example.msproduct.mapper;
 
-import org.example.msproduct.entity.Product;
+import org.example.msproduct.dao.entity.Product;
 import org.example.msproduct.model.dto.OrderProduct;
 import org.example.msproduct.model.request.ProductCreateRequest;
 import org.example.msproduct.model.response.PageableResponse;

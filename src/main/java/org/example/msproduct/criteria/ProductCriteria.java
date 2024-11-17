@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.USE_DEFAULTS;
-import static org.example.msproduct.constant.CriteriaConstants.*;
+import static org.example.msproduct.model.constants.CriteriaConstants.*;
 
 @Data
 @AllArgsConstructor
