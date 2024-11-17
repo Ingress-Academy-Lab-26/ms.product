@@ -10,9 +10,6 @@ import org.example.msproduct.model.request.ProductUpdateRequest;
 import org.example.msproduct.model.response.OrderResponse;
 import org.example.msproduct.model.response.PageableResponse;
 import org.example.msproduct.model.response.ProductResponse;
-import org.hibernate.criterion.Order;
-
-import java.util.HashMap;
 
 public interface ProductService {
     PageableResponse<ProductResponse> getProducts(PageCriteria pageCriteria, ProductCriteria productCriteria);

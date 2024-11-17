@@ -8,6 +8,7 @@ import org.example.msproduct.criteria.PageCriteria;
 import org.example.msproduct.criteria.ProductCriteria;
 import org.example.msproduct.dao.entity.Product;
 import org.example.msproduct.dao.entity.ProductImage;
+import org.example.msproduct.dao.repository.ProductRepository;
 import org.example.msproduct.exception.NotFoundException;
 import org.example.msproduct.exception.ProductQuantityException;
 import org.example.msproduct.model.dto.OrderProduct;
@@ -19,7 +20,6 @@ import org.example.msproduct.model.request.ProductUpdateRequest;
 import org.example.msproduct.model.response.OrderResponse;
 import org.example.msproduct.model.response.PageableResponse;
 import org.example.msproduct.model.response.ProductResponse;
-import org.example.msproduct.dao.repository.ProductRepository;
 import org.example.msproduct.service.abstraction.ProductService;
 import org.example.msproduct.service.specification.ProductSpecification;
 import org.example.msproduct.util.CacheUtil;
@@ -33,13 +33,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+import static org.example.msproduct.mapper.ImageMapper.IMAGE_MAPPER;
+import static org.example.msproduct.mapper.ProductMapper.PRODUCT_MAPPER;
 import static org.example.msproduct.model.constants.CacheConstants.CACHE_PRODUCT_DEFAULT_KEY;
 import static org.example.msproduct.model.constants.CriteriaConstants.RATING;
 import static org.example.msproduct.model.constants.CriteriaConstants.SUBSCRIBED;
 import static org.example.msproduct.model.constants.ErrorConstants.PRODUCT_NOT_FOUND_EXCEPTION;
 import static org.example.msproduct.model.constants.ErrorConstants.PRODUCT_QUANTITY_EXCEPTION;
-import static org.example.msproduct.mapper.ImageMapper.IMAGE_MAPPER;
-import static org.example.msproduct.mapper.ProductMapper.PRODUCT_MAPPER;
 
 @Slf4j
 @Service

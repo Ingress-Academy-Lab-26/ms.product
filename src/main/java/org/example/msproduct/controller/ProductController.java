@@ -2,20 +2,12 @@ package org.example.msproduct.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.msproduct.annotation.Loggable;
 import org.example.msproduct.criteria.PageCriteria;
 import org.example.msproduct.criteria.ProductCriteria;
-import org.example.msproduct.model.request.OrderRequest;
-import org.example.msproduct.model.request.ProductCreateRequest;
-import org.example.msproduct.model.request.ProductUpdateRequest;
-import org.example.msproduct.model.response.OrderResponse;
 import org.example.msproduct.model.response.PageableResponse;
 import org.example.msproduct.model.response.ProductResponse;
 import org.example.msproduct.service.abstraction.ProductService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.OK;

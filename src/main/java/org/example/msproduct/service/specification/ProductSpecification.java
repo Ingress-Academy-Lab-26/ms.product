@@ -3,7 +3,6 @@ package org.example.msproduct.service.specification;
 import lombok.AllArgsConstructor;
 import org.example.msproduct.criteria.ProductCriteria;
 import org.example.msproduct.dao.entity.Product;
-import org.example.msproduct.dao.entity.ProductImage;
 import org.example.msproduct.util.PredicateUtil;
 import org.springframework.data.jpa.domain.Specification;
 

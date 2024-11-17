@@ -1,6 +1,5 @@
 package org.example.msproduct.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

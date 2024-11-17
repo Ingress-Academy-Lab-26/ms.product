@@ -34,7 +34,7 @@ public class RabbitMqConfig {
                           @Value("${rabbitmq.queue.rating-service.queue_dlq}") String ratingDLQ,
                           @Value("${rabbitmq.queue.subscription-service.queue}") String subscriptionQ,
                           @Value("${rabbitmq.queue.subscription-service.queue_dlq}") String subscriptionDLQ
-                          ) {
+    ) {
 
         this.orderQ = orderQ;
         this.orderDLQ = orderDLQ;
@@ -60,52 +60,52 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    DirectExchange orderDLQExchange() {
+    public DirectExchange orderDLQExchange() {
         return new DirectExchange(orderDLQExchange);
     }
 
     @Bean
-    DirectExchange subscriptionDLQExchange() {
+    public DirectExchange subscriptionDLQExchange() {
         return new DirectExchange(subscriptionDLQExchange);
     }
 
     @Bean
-    DirectExchange ratingDLQExchange() {
+    public DirectExchange ratingDLQExchange() {
         return new DirectExchange(ratingDLQExchange);
     }
 
     @Bean
-    DirectExchange orderQExchange() {
+    public DirectExchange orderQExchange() {
         return new DirectExchange(orderQExchange);
     }
 
     @Bean
-    DirectExchange subscriptionQExchange() {
+    public DirectExchange subscriptionQExchange() {
         return new DirectExchange(subscriptionQExchange);
     }
 
     @Bean
-    DirectExchange ratingQExchange() {
+    public DirectExchange ratingQExchange() {
         return new DirectExchange(ratingQExchange);
     }
 
     @Bean
-    Queue orderDLQ() {
+    public Queue orderDLQ() {
         return QueueBuilder.durable(orderDLQ).build();
     }
 
     @Bean
-    Queue subscriptionDLQ() {
+    public Queue subscriptionDLQ() {
         return QueueBuilder.durable(subscriptionDLQ).build();
     }
 
     @Bean
-    Queue ratingDLQ() {
+    public Queue ratingDLQ() {
         return QueueBuilder.durable(ratingDLQ).build();
     }
 
     @Bean
-    Queue orderQ() {
+    public Queue orderQ() {
         return QueueBuilder.durable(orderQ)
                 .withArgument("x-dead-letter-exchange", orderDLQExchange)
                 .withArgument("x-dead-letter-routing-key", orderDLQKey)
@@ -113,7 +113,7 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    Queue subscriptionQ() {
+    public Queue subscriptionQ() {
         return QueueBuilder.durable(subscriptionQ)
                 .withArgument("x-dead-letter-exchange", subscriptionDLQExchange)
                 .withArgument("x-dead-letter-routing-key", subscriptionDLQKey)
@@ -121,7 +121,7 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    Queue ratingQ() {
+    public Queue ratingQ() {
         return QueueBuilder.durable(ratingQ)
                 .withArgument("x-dead-letter-exchange", ratingDLQExchange)
                 .withArgument("x-dead-letter-routing-key", ratingDLQKey)
@@ -129,37 +129,37 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    Binding orderDLQBinding() {
+    public Binding orderDLQBinding() {
         return BindingBuilder.bind(orderDLQ())
                 .to(orderDLQExchange()).with(orderDLQKey);
     }
 
     @Bean
-    Binding subscriptionDLQBinding() {
+    public Binding subscriptionDLQBinding() {
         return BindingBuilder.bind(subscriptionDLQ())
                 .to(orderDLQExchange()).with(subscriptionDLQKey);
     }
 
     @Bean
-    Binding ratingDLQBinding() {
+    public Binding ratingDLQBinding() {
         return BindingBuilder.bind(ratingDLQ())
                 .to(orderDLQExchange()).with(ratingDLQKey);
     }
 
     @Bean
-    Binding orderQBinding() {
+    public Binding orderQBinding() {
         return BindingBuilder.bind(orderQ())
                 .to(orderQExchange()).with(orderQKey);
     }
 
     @Bean
-    Binding subscriptionQBinding() {
+    public Binding subscriptionQBinding() {
         return BindingBuilder.bind(subscriptionQ())
                 .to(orderQExchange()).with(subscriptionQKey);
     }
 
     @Bean
-    Binding ratingQBinding() {
+    public Binding ratingQBinding() {
         return BindingBuilder.bind(ratingQ())
                 .to(orderQExchange()).with(ratingQKey);
     }

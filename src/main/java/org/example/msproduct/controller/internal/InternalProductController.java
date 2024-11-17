@@ -7,13 +7,10 @@ import org.example.msproduct.model.request.ProductUpdateRequest;
 import org.example.msproduct.model.response.OrderResponse;
 import org.example.msproduct.model.response.ProductResponse;
 import org.example.msproduct.service.abstraction.ProductService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("v1/internal/products")
