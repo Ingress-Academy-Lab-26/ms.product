@@ -10,7 +10,9 @@ import org.example.msproduct.service.abstraction.ProductService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.OK;
+
 
 @RestController
 @RequestMapping("v1/products")
@@ -23,7 +25,7 @@ public class ProductController {
     @ResponseStatus(OK)
     @PreAuthorize("@authServiceHandler.hasAuthority(#authorizationHeader)")
     public PageableResponse<ProductResponse> getAllProducts(
-            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestHeader(AUTHORIZATION) String authorizationHeader,
             PageCriteria pageCriteria,
             ProductCriteria productCriteria) {
         return productService.getProducts(pageCriteria, productCriteria);
@@ -32,7 +34,7 @@ public class ProductController {
     @GetMapping("/{id}")
     @ResponseStatus(OK)
     @PreAuthorize("@authServiceHandler.hasAuthority(#authorizationHeader)")
-    public ProductResponse getProductById(@RequestHeader("Authorization") String authorizationHeader,
+    public ProductResponse getProductById(@RequestHeader(AUTHORIZATION) String authorizationHeader,
                                           @PathVariable long id) {
         return productService.getProduct(id);
     }

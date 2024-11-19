@@ -2,7 +2,6 @@ package org.example.msproduct.service.concrete;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.msproduct.annotation.ElapsedTimeLogger;
 import org.example.msproduct.annotation.Loggable;
 import org.example.msproduct.criteria.PageCriteria;
 import org.example.msproduct.criteria.ProductCriteria;
@@ -66,7 +65,6 @@ public class ProductServiceHandler implements ProductService {
 
     @Override
     @Loggable
-    @ElapsedTimeLogger
     public ProductResponse getProduct(Long id) {
         log.info("ActionLog.ProductService.getProduct.Info.Id: {}", id);
         Product product;

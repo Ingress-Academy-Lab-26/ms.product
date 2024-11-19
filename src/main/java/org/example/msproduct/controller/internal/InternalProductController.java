@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-@RequestMapping("v1/internal/products")
+@RequestMapping("internal/v1/products")
 @RequiredArgsConstructor
 public class InternalProductController {
 

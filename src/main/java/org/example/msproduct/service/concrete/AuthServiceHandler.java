@@ -16,16 +16,15 @@ public class AuthServiceHandler implements AuthService {
 
     @Override
     @Loggable
-    public UserResponse verifyToken(String token) {
+    public void verifyToken(String token) {
         log.info("ActionLog.User.Token: {}", token);
-        var response = authClient.verifyToken(token);
-        return response;
+        authClient.verifyToken(token);
     }
 
     @Override
     public boolean hasAuthority(String authority) {
         log.info("ActionLog.User.Authority: {}", authority);
-        var userResponse = verifyToken(authority);
-        return userResponse != null && userResponse.getUserId() != null;
+        verifyToken(authority);
+        return true;
     }
 }
