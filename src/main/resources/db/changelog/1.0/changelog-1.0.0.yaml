@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: Product Table
+      author: Fuad Muradov
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: features
+                  type: jsonb
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rating
+                  type: decimal(10,7)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: subscribed
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+            remarks: product table
