@@ -1,4 +1,4 @@
-package org.example.msproduct.criteria;
+package org.example.msproduct.model.criteria;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -29,5 +29,13 @@ public class ProductCriteria {
     private Boolean subscribed;
     @JsonInclude(USE_DEFAULTS)
     private Integer minQuantity = QUANTITY_MIN_DEFAULT_VALUE;
+
+    private boolean sortByName;
+    private boolean sortByDescription;
+    private boolean sortByPrice;
+    private boolean sortByRating;
+    private boolean sortBySubscribed;
+
+    private String sortDirection;
 
 }

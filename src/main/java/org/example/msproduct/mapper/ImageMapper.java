@@ -7,17 +7,16 @@ import org.example.msproduct.model.response.ProductImageResponse;
 
 import java.util.Base64;
 
+import static org.example.msproduct.model.enums.Status.ACTIVE;
+
 public enum ImageMapper {
     IMAGE_MAPPER;
 
     @SneakyThrows
     public ProductImage mapToEntity(ProductImageRequest request) {
-        String encodedFile = Base64.getEncoder().encodeToString(request.getImage().getBytes());
         return ProductImage.builder()
-                .name(request.getImage().getOriginalFilename())
-                .type(request.getImage().getContentType())
-                .encodedImage(encodedFile)
-                .isDeleted(false)
+                .encodedImage(request.getImage())
+                .status(ACTIVE)
                 .isMain(request.getIsMain())
                 .build();
     }
@@ -26,8 +25,6 @@ public enum ImageMapper {
     public ProductImageResponse mapToResponse(ProductImage image) {
         return ProductImageResponse.builder()
                 .id(image.getId())
-                .name(image.getName())
-                .type(image.getType())
                 .isMain(image.getIsMain())
                 .image(Base64.getDecoder().decode(image.getEncodedImage()))
                 .build();

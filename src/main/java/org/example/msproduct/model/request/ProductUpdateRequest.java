@@ -1,13 +1,17 @@
 package org.example.msproduct.model.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.msproduct.model.dto.Features;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class ProductUpdateRequest {
     private String name;
@@ -15,6 +19,6 @@ public class ProductUpdateRequest {
     private BigDecimal price;
     private Integer quantity;
     private Long categoryId;
-    private Map<String, String> features;
+    private List<Features> features;
     private List<ProductImageRequest> images;
 }

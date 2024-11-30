@@ -2,8 +2,8 @@ package org.example.msproduct.util;
 
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RBucket;
-import org.redisson.api.RKeys;
 import org.redisson.api.RedissonClient;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -20,6 +20,7 @@ public class CacheUtil {
                 bucket.get();
     }
 
+    @Async
     public <T> void setBucket(String cacheKey, T value, Long expireTime, TemporalUnit temporalUnit) {
         RBucket<T> bucket = redisson.getBucket(cacheKey);
         bucket.set(value);
@@ -31,9 +32,5 @@ public class CacheUtil {
         if (bucket.isExists()) {
             bucket.delete();
         }
-    }
-    public void clearAllCaches() {
-        RKeys keys = redisson.getKeys();
-        keys.flushdb();
     }
 }

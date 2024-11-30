@@ -9,8 +9,6 @@ import lombok.Setter;
 @Builder
 public class ProductImageResponse {
     private Long id;
-    private String name;
-    private String type;
     private byte[] image;
     private Boolean isMain;
 }

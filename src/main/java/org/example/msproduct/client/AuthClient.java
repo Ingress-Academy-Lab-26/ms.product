@@ -6,8 +6,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import org.springframework.http.HttpHeaders;
-
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @FeignClient(name = "ms-auth", url = "${ms.auth.url}", configuration = CustomErrorDecoder.class)

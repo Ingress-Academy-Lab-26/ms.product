@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: Update Rating Column Precision
-      author: Fuad Muradov
-      changes:
-        - modifyDataType:
-            tableName: products
-            columnName: rating
-            newDataType: decimal(10,7)

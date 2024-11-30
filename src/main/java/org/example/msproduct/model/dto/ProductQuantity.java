@@ -1,6 +1,7 @@
-package org.example.msproduct.model.queue.dto;
+package org.example.msproduct.model.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,9 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RatingProductDto {
+@Builder
+public class ProductQuantity {
     private Long productId;
-    private BigDecimal ratingAverage;
+    private Integer quantity;
+    private BigDecimal price;
 }

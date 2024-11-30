@@ -1,6 +1,7 @@
 package org.example.msproduct.dao.entity;
 
 import lombok.*;
+import org.example.msproduct.model.enums.Status;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.Where;
@@ -10,16 +11,19 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "images")
-@Where(clause = "is_deleted = false")
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode(of = "id")
+@Where(clause = "status = 'ACTIVE'")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImage implements Serializable {
@@ -28,21 +32,14 @@ public class ProductImage implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String name;
-    private String type;
-    @Column(name = "encoded_image")
     private String encodedImage;
-    @Column(name = "is_main")
     private Boolean isMain;
-    @JoinColumn(name = "product_id")
-    @ManyToOne(fetch = LAZY, cascade = {PERSIST, MERGE, REMOVE})
+    @ManyToOne(fetch = LAZY, cascade = {PERSIST, MERGE})
     private Product product;
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-    @Column(name = "created_at")
+    @Enumerated(STRING)
+    private Status status;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

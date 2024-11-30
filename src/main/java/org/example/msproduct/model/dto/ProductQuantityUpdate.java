@@ -3,12 +3,9 @@ package org.example.msproduct.model.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
 @Builder
-public class OrderProduct {
+public class ProductQuantityUpdate {
     private Long productId;
-    private Integer quantity;
-    private BigDecimal price;
+    private int quantity;
 }

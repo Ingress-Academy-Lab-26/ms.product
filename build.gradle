@@ -29,11 +29,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation "javax.validation:validation-api:${validationVersion}"
     implementation "org.hibernate.validator:hibernate-validator:${validatorVersion}"
     implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${feignVersion}"
     implementation "org.redisson:redisson:${redissonVersion}"
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'com.vladmihalcea:hibernate-types-52:2.21.1'
+    implementation group: 'io.hypersistence', name: 'hypersistence-utils-hibernate-55', version: "$hypersistenceVersion"
+    implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot2', version: "$resilience4jVersion"
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'

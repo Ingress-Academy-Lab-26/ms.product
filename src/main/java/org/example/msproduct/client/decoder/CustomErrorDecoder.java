@@ -13,8 +13,8 @@ import static org.example.msproduct.model.constants.ErrorConstants.CLIENT_EXCEPT
 public class CustomErrorDecoder implements ErrorDecoder {
     @Override
     public Exception decode(String s, Response response) {
-        String message = CLIENT_EXCEPTION.getMessage();
-        String code = CLIENT_EXCEPTION.getCode();
+        var message = CLIENT_EXCEPTION.getMessage();
+        var code = CLIENT_EXCEPTION.getCode();
         int status = response.status();
 
         JsonNode node;

@@ -1,4 +1,4 @@
-package org.example.msproduct.criteria;
+package org.example.msproduct.model.criteria;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

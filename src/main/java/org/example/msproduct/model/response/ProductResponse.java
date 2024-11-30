@@ -3,11 +3,11 @@ package org.example.msproduct.model.response;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.msproduct.model.dto.Features;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -18,9 +18,9 @@ public class ProductResponse {
     private String description;
     private BigDecimal price;
     private Integer quantity;
-    private Double rating;
+    private BigDecimal rating;
     private Boolean subscribed;
-    private Map<String, String> features;
+    private List<Features> features;
     private List<ProductImageResponse> images;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

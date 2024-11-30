@@ -1,6 +1,5 @@
 package org.example.msproduct.client.decoder;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

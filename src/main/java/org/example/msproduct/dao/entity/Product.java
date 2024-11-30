@@ -1,72 +1,60 @@
 package org.example.msproduct.dao.entity;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.annotations.Where;
+import org.example.msproduct.model.dto.Features;
+import org.example.msproduct.model.enums.Status;
+import org.hibernate.annotations.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
-import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.FetchType.LAZY;
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "products")
-@Where(clause = "is_deleted = false")
 @Getter
 @Setter
-@ToString
 @Builder
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedEntityGraph(name = "images-features-entity-graph", attributeNodes = {@NamedAttributeNode("features"), @NamedAttributeNode("images")})
+@Where(clause = "status = 'ACTIVE'")
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@NamedEntityGraph(name = "images-entity-graph", attributeNodes =@NamedAttributeNode("images"))
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
-    @Column(name = "category_id")
     private Long categoryId;
     private Integer quantity;
-    private Double rating;
+    private BigDecimal rating;
     private Boolean subscribed;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "features",
-            joinColumns = @JoinColumn(name = "product_id"))
-    @MapKeyColumn(name = "feature_key")
-    @Column(name = "feature_value")
-    private Map<String, String> features;
-    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY, cascade = {PERSIST, MERGE, REMOVE})
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private List<Features> features;
+    @OneToMany(mappedBy = "product",fetch = LAZY, cascade = {PERSIST, MERGE})
     private List<ProductImage> images;
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
-    @Column(name = "created_at")
+    @Enumerated(STRING)
+    private Status status;
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Product product = (Product) object;
-        return Objects.equals(id, product.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

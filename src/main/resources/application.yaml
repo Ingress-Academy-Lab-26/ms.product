@@ -6,15 +6,18 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: mysecretpassword
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: none
     open-in-view: false
+
   liquibase:
     change-log: classpath:db/changelog/changelog-master.yaml
     enabled: true
+
   rabbitmq:
     host: localhost
     username: guest
@@ -28,6 +31,17 @@ spring:
           max-interval: 30s
           multiplier: 1
         missing-queues-fatal: false
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        failure-rate-threshold: 100
+        wait-duration-in-open-state: 50000
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        sliding-window-type: count_based
+
 rabbitmq:
   queue:
     order-service:
@@ -39,9 +53,12 @@ rabbitmq:
     subscription-service:
       queue: SUBSCRIPTION_Q
       queue_dlq: SUBSCRIPTION_DLQ
+
 redis:
   server:
     urls: redis://localhost:6379
+
 ms:
   auth:
     url: http://localhost:8383
+

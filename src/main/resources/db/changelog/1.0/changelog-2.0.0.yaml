@@ -13,16 +13,6 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: name
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: type
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
                   name: encoded_image
                   type: text
                   constraints:
@@ -38,6 +28,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
                   name: created_at
                   type: timestamp
                   constraints:
@@ -47,9 +42,5 @@ databaseChangeLog:
                   type: timestamp
                   constraints:
                     nullable: false
-              - column:
-                  name: is_deleted
-                  type: boolean
-                  constraints:
-                    nullable: false
+
             remarks: image table
